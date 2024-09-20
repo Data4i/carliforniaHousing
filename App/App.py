@@ -24,7 +24,9 @@ def load_data(data_path):
 data_path = os.path.join(os.getcwd(), "housing.csv")
 data = load_data(data_path)
 
-model_path, pipeline_path = '../best_model.pkl', '../full_pipeline.pkl'
+model_path = os.path.join(os.getcwd(), "best_model.pkl"), 
+pipeline_path = os.path.join(os.getcwd(), "full_pipeline.pkl")
+
 
 model, pipeline = load_resource(model_path, pipeline_path)
 
