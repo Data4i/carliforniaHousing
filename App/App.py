@@ -1,5 +1,6 @@
 import streamlit as st
 import pickle
+import os
 import pandas as pd
 import numpy as np
 
@@ -20,7 +21,7 @@ def load_data(data_path):
     data = pd.read_csv(data_path)
     return data
 
-data_path = "./housing.csv"
+data_path = os.path.join(os.getcwd(), "housing.csv")
 data = load_data(data_path)
 
 model_path, pipeline_path = '../best_model.pkl', '../full_pipeline.pkl'
