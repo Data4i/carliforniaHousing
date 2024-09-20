@@ -20,7 +20,7 @@ def load_data(data_path):
     data = pd.read_csv(data_path)
     return data
 
-data_path = "housing.csv"
+data_path = "./housing.csv"
 data = load_data(data_path)
 
 model_path, pipeline_path = '../best_model.pkl', '../full_pipeline.pkl'
@@ -90,5 +90,5 @@ if button:
     }, index=[0])
     ready_features = pipeline.transform(full_features)
     predicted_value = model.predict(ready_features)
-    
-    st.write(f'The Approximate Median House Value -> {predicted_value[0]}')
+    with mid_col:
+        st.write(f'The Approximate Median House Value -> {predicted_value[0]}')
