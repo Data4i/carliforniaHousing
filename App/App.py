@@ -42,8 +42,8 @@ pipeline_absolute_path = posixpath.abspath(pipeline_relative_path)
 model_path = os.path.join(os.getcwd(), "best_model.pkl"), 
 pipeline_path = os.path.join(os.getcwd(), "full_pipeline.pkl")
 
-model = load_model(model_path)
-pipeline = load_pipeline(pipeline_path)
+model = load_model(model_relative_path)
+pipeline = load_pipeline(pipeline_relative_path)
 
 
 left_col, mid_col, right_col = st.columns([1,2,1])
