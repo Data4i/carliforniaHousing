@@ -39,8 +39,8 @@ model_absolute_path = posixpath.abspath(model_relative_path)
 pipeline_relative_path = "../full_pipeline.pkl"
 pipeline_absolute_path = posixpath.abspath(pipeline_relative_path)
 
-model_path = os.path.join(BASE_DIR, "best_model.pkl"), 
-pipeline_path = os.path.join(BASE_DIR, "full_pipeline.pkl")
+model_path = os.path.join(os.getcwd(), "best_model.pkl"), 
+pipeline_path = os.path.join(os.getcwd(), "full_pipeline.pkl")
 
 model = load_model(model_path)
 pipeline = load_pipeline(pipeline_path)
