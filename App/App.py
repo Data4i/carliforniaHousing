@@ -3,11 +3,14 @@ import pickle
 import os
 import pandas as pd
 import numpy as np
+from pathlib import Path
+import posixpath
 
 from utils.utils import CreateAdditionalAttributes
 
 st.set_page_config(page_title='House Prices Predictor', layout = 'wide', page_icon='🏠')
 
+BASE_DIR = Path(__file__).resolve().parent.parent
 
 @st.cache_resource
 def load_resource(model_path, pipeline_path):
@@ -21,14 +24,19 @@ def load_data(data_path):
     data = pd.read_csv(data_path)
     return data
 
-data_path = os.path.join(os.getcwd(), "housing.csv")
+data_path = os.path.join(BASE_DIR, "housing.csv")
 data = load_data(data_path)
 
-model_path = os.path.join(os.getcwd(), "best_model.pkl"), 
-pipeline_path = os.path.join(os.getcwd(), "full_pipeline.pkl")
+model_relative_path = "../best_model.pkl"
+model_absolute_path = posixpath.abspath(model_relative_path)
 
+pipeline_relative_path = "../full_pipeline.pkl"
+pipeline_absolute_path = posixpath.abspath(pipeline_relative_path)
 
-model, pipeline = load_resource(model_path, pipeline_path)
+model_path = os.path.join(BASE_DIR, "best_model.pkl"), 
+pipeline_path = os.path.join(BASE_DIR, "full_pipeline.pkl")
+
+model, pipeline = load_resource(model_absolute_path, pipeline_absolute_path)
 
 
 left_col, mid_col, right_col = st.columns([1,2,1])
