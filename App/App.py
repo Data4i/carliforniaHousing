@@ -12,12 +12,18 @@ st.set_page_config(page_title='House Prices Predictor', layout = 'wide', page_ic
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
+
 @st.cache_resource
-def load_resource(model_path, pipeline_path):
-    model = pickle.load(open(model_path, 'rb'))
+def load_pipeline(pipeline_path):
     pipeline = pickle.load(open(pipeline_path, 'rb'))
-    
-    return model, pipeline
+    return pipeline
+
+
+@st.cache_resource
+def load_model(model_path): 
+    model = pickle.load(open(model_path, 'rb'))
+    return model
+
 
 @st.cache_data
 def load_data(data_path):
@@ -36,7 +42,8 @@ pipeline_absolute_path = posixpath.abspath(pipeline_relative_path)
 model_path = os.path.join(BASE_DIR, "best_model.pkl"), 
 pipeline_path = os.path.join(BASE_DIR, "full_pipeline.pkl")
 
-model, pipeline = load_resource(model_absolute_path, pipeline_absolute_path)
+pipeline = load_model(model_absolute_path)
+pipeline = load_pipeline(pipeline_absolute_path)
 
 
 left_col, mid_col, right_col = st.columns([1,2,1])
